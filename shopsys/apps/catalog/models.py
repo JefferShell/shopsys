@@ -36,7 +36,7 @@ class Category(models.Model):
         return reverse('catalog_category', args=(self.slug,))
 
 
-class Product(models.Model)
+class Product(models.Model):
     name = models.CharField("名称", max_length=50, unique=True)
     slug = models.SlugField(
         "Slug",
