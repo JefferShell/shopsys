@@ -1,3 +1,4 @@
+#-*-coding:utf8-*-
 from django.db import models
 from django.core.urlresolvers import reverse
 # Create your models here.
@@ -19,7 +20,7 @@ class Category(models.Model):
         help_text='Meta描述'
     )
     created_at = models.DateTimeField("创建时间", auto_now_add=True)
-    update_at = models.DateTimeField("更新时间", auto_now=True)
+    updated_at = models.DateTimeField("更新时间", auto_now=True)
 
     class Mate:
         db_table = 'categories'
@@ -27,6 +28,7 @@ class Category(models.Model):
         #django admin中识别的时候，复数的名称是什么
         verbose_name_plural = 'Categories'
         #在admin显示的名字是verbose_name
+        verbose_name = '产品类型'
 
     #这个函数是print的时候显示的名字
     def __str__(self):
@@ -66,12 +68,13 @@ class Product(models.Model):
         help_text='Meta描述'
     )
     created_at = models.DateTimeField("创建时间", auto_now_add=True)
-    update_at = models.DateTimeField("更新时间", auto_now=True)
+    updated_at = models.DateTimeField("更新时间", auto_now=True)
     categories = models.ManyToManyField(Category)
 
     class Mate():
         db_table = 'products'
         ordering = ['-created_at']
+        verbose_name = "分类"
 
     def __str__(self):
         return self.name
